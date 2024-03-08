@@ -9,7 +9,7 @@ module.exports = {
 };
 
 async function getAll() {
-    return await db.User.findAll();
+    return await db.Product.findAll();
 }
 
 async function getById(id) {
@@ -18,11 +18,11 @@ async function getById(id) {
 
 async function create(params) {
     // validate
-    if (await db.User.findOne({ where: { name: params.name } })) {
+    if (await db.Product.findOne({ where: { name: params.name } })) {
         throw 'Name "' + params.name + '" is already exists';
     }
 
-    const product = new db.User(params);
+    const product = new db.Product(params);
 
     // product user
     await product.save();
@@ -33,7 +33,7 @@ async function update(id, params) {
 
     // validate
     const productnameChanged = params.name && user.name !== params.name;
-    if (productnameChanged && await db.User.findOne({ where: {name: params.name } })) {
+    if (productnameChanged && await db.Product.findOne({ where: {name: params.name } })) {
         throw 'Name "' + params.name + '" is already taken';
     }
 
@@ -50,7 +50,7 @@ async function _delete(id) {
 // helper functions
 
 async function getProduct(id) {
-    const product =  await db.User.findByPk(id);
+    const product =  await db.Product.findByPk(id);
     if (!product) throw 'Product not found';
     return product;
 }
