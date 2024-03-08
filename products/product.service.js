@@ -13,7 +13,7 @@ async function getAll() {
 }
 
 async function getById(id) {
-    return await getUser(id);
+    return await getProduct(id);
 }
 
 async function create(params) {
@@ -22,14 +22,14 @@ async function create(params) {
         throw 'Name "' + params.name + '" is already exists';
     }
 
-    const product = new db.Product(params);
+    const product = new db.User(params);
 
     // product user
     await product.save();
 }
 
 async function update(id, params) {
-    const product = await getUser(id);
+    const product = await getProduct(id);
 
     // validate
     const productnameChanged = params.name && user.name !== params.name;
@@ -43,13 +43,13 @@ async function update(id, params) {
 }
 
 async function _delete(id) {
-    const product = await getUser(id);
+    const product = await getProduct(id);
     await product.destroy();
 }
 
 // helper functions
 
-async function getUser(id) {
+async function getProduct(id) {
     const product =  await db.User.findByPk(id);
     if (!product) throw 'Product not found';
     return product;
