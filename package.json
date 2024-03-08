@@ -1,5 +1,5 @@
 {
-  "name": "node-mysql-crud-api",
+  "name": "mysql-crud-api",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
@@ -17,5 +17,9 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
-  }
+  },
+  "main": "server.js",
+  "keywords": [],
+  "author": "",
+  "description": ""
 }
