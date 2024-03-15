@@ -12,10 +12,17 @@ router.get('/:id', getById);
 router.post('/', createSchema, create);
 router.put('/:id', updateSchema, update);
 router.delete('/:id', _delete);
+router.get('/profile/:id', profile);
 
 module.exports = router;
 
 // route functions
+
+function profile(req, res, next) {
+    userService.getProfile(req.params.id)
+        .then(user => res.json(user))
+        .catch(next);
+}
 
 function getAll(req, res, next) {
     userService.getAll()
